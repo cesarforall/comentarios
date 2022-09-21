@@ -284,7 +284,7 @@ let wholeCommentArray = [];
 let booksArray = [];
 
 commentsContainer.addEventListener('click', event => {
-	if (event.target.nodeName === 'BUTTON') {
+	if (event.target.nodeName === 'P') {
 		const bookId = event.target.parentNode.getAttribute('id');
 		const commentText = event.target.innerText;
 
@@ -336,6 +336,7 @@ for (book of data) {
 	const bookTitle = document.createElement('h3');
 
 	bookContainer.setAttribute('id', book[0]);
+	bookContainer.setAttribute('class', 'book');
 
 	commentsContainer.appendChild(bookContainer);
 	bookContainer.appendChild(bookTitle);
@@ -345,7 +346,8 @@ for (book of data) {
 	for (row of book[1]) {
 		row = Object.entries(row);
 		for (comment of row) {
-			const commentButton = document.createElement('button');
+			const commentButton = document.createElement('p');
+			commentButton.setAttribute('class', "comment");
 
 			bookContainer.appendChild(commentButton);
 
