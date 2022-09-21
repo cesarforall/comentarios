@@ -280,6 +280,8 @@ const wholeCommentContainer = document.getElementById('whole-comment-container')
 const wholeCommentText = document.getElementById('whole-comment-text');
 
 let wholeComment = {};
+let wholeCommentArray = [];
+let booksArray = [];
 
 commentsContainer.addEventListener('click', event => {
 	if (event.target.nodeName === 'BUTTON') {
@@ -298,29 +300,38 @@ commentsContainer.addEventListener('click', event => {
 		}
 		console.log(wholeComment);
 
-		let wholeCommentArray = Object.entries(wholeComment);
+		wholeCommentArray = Object.entries(wholeComment);
 
-		wholeCommentText.innerText = wholeCommentArray;
+		let wholeCommentStrings = [];
+		for (let i = 0; i < wholeCommentArray.length; i++) {
+			if (wholeCommentArray[i][0] == 'Desactivación') {
+				const wholeCommentString = wholeCommentArray[i][0] + ' ' + wholeCommentArray[i][1].join(', ');
+				console.log(wholeCommentString);
+				wholeCommentStrings.push(wholeCommentString);
+			} else {
+				const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
+				console.log(wholeCommentString);
+				wholeCommentStrings.push(wholeCommentString);
+			}
+		}
+		wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
 	}
 });
 
 function copiarAlPortapapeles(id_elemento) {
-  var aux = document.createElement("input");
-  aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
-  document.body.appendChild(aux);
-  aux.select();
-  document.execCommand("copy");
-  document.body.removeChild(aux);
+	var aux = document.createElement('input');
+	aux.setAttribute('value', document.getElementById(id_elemento).innerHTML);
+	document.body.appendChild(aux);
+	aux.select();
+	document.execCommand('copy');
+	document.body.removeChild(aux);
 }
 
 wholeCommentContainer.addEventListener('click', event => {
-	copiarAlPortapapeles('whole-comment-text')
+	copiarAlPortapapeles('whole-comment-text');
 });
 
 for (book of data) {
-	console.log('book: ' + book[0]);
-	console.log(typeof book[0]);
-
 	const bookContainer = document.createElement('div');
 	const bookTitle = document.createElement('h3');
 
@@ -334,8 +345,6 @@ for (book of data) {
 	for (row of book[1]) {
 		row = Object.entries(row);
 		for (comment of row) {
-			console.log('comment: ' + comment[1]);
-
 			const commentButton = document.createElement('button');
 
 			bookContainer.appendChild(commentButton);
