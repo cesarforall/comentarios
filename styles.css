@@ -3,9 +3,20 @@ body {
 	font-family: 'Arial', 'Courier New';
 }
 
+header {
+	height: 100px;
+	text-align: center;
+}
+main {
+	padding-top: 50px;
+}
 .comments-container {
 	display: flex;
-	padding: 10px;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	padding: 80px;
+	justify-content: center;
+	max-width: 1024px;
 	background-image: linear-gradient(0deg, #c7057f 0%, #2a1f6d 100%);
 }
 .book h3 {
@@ -17,6 +28,7 @@ body {
 .comment {
 	padding: 7px;
 	margin: 1px;
+	width: 150px;
 	cursor: pointer;
 	color: white;
 	background-color: #4a4083c0;
@@ -26,9 +38,11 @@ body {
 	position: fixed;
 	width: 540px;
 	min-height: 80px;
-	top: 30px;
-	right: 50px;
-	padding: 10px;
+	top: 90px;
+	left: 0;
+	right: 0;
+	padding: 10px 20px;
+	margin: 40px auto;
 	background: #ffffff;
 	/* border: 1px solid black; */
 	border-radius: 5px;
