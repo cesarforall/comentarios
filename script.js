@@ -562,11 +562,15 @@ commentsContainer.addEventListener('click', event => {
 				const wholeCommentString = wholeCommentArray[i][0] + ' ' + wholeCommentArray[i][1].join(', ');
 				console.log(wholeCommentString);
 				wholeCommentStrings.push(wholeCommentString);
-			} else {
-				const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
+			} else if (wholeCommentArray[i][0] == 'Varios') {
+				const wholeCommentString = ' ' + wholeCommentArray[i][1].join(', ');
 				console.log(wholeCommentString);
 				wholeCommentStrings.push(wholeCommentString);
-			}
+			} else {
+                const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
+				console.log(wholeCommentString);
+				wholeCommentStrings.push(wholeCommentString);
+            }
 		}
 		wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
 	}
