@@ -521,6 +521,9 @@ comments = {
             "Varios": "Limpieza"
         },
         {
+            "Varios": "Limpieza carcasa + display"
+        },
+        {
             "Varios": "Plataformado"
         },
         {
@@ -563,7 +566,7 @@ commentsContainer.addEventListener('click', event => {
 				console.log(wholeCommentString);
 				wholeCommentStrings.push(wholeCommentString);
 			} else if (wholeCommentArray[i][0] == 'Varios') {
-				const wholeCommentString = ' ' + wholeCommentArray[i][1].join(', ');
+				const wholeCommentString = wholeCommentArray[i][1].join(', ');
 				console.log(wholeCommentString);
 				wholeCommentStrings.push(wholeCommentString);
 			} else {
