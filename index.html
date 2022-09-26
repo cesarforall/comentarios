@@ -10,13 +10,25 @@
 	<body>
 		<header>
 			<h1>Creador de comentarios</h1>
-			<p>Haz click en las opciones para crear el comentario.<br>No copies, solo pincha en el comentario generado y pega donde quieras.</p>
+			<p>
+				Haz click en las opciones para crear el comentario.
+				<br />
+				No copies, solo pincha en el comentario generado y pega donde quieras.
+			</p>
 		</header>
 		<main>
 			<div id="comments-container" class="comments-container"></div>
 		</main>
 		<section>
 			<div id="whole-comment-container" class="whole-comment-container">
+				<div>
+					<div class="buttons-container">
+						<figure class="reload-btn" onclick="location.reload()">
+							<img src="./img/redo-solid.svg" alt="" />
+						</figure>
+						<figure><img class="backspace-btn" src="./img/backspace-solid.svg" alt="" /></figure>
+					</div>
+				</div>
 				<p id="whole-comment-text"></p>
 			</div>
 		</section>
