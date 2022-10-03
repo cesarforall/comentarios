@@ -1,0 +1,59 @@
+-----Estructura de comentarios
+
+	{
+		Varios: [
+			'Actualización versión',
+			'Carga de claves',
+			'Devolución de terminal',
+			'Devuelto irreparable',
+			'Limpieza',
+			'Limpieza carcasa + display',
+			'Plataformado',
+			'Revisión tensión batería',
+		],
+	},
+
+-----Modificación de comentarios
+
+1. Abrir el archivo data.js con un editor de texto (Bloc de notas, Notepad++, VSCode, Vim,...)
+2. Ir al comentario y modificar el texto entre las comillas simples
+
+		{
+		Varios: [
+			'Actualización versión',
+			'Carga de claves',
+			'Devolución de terminal',
+			'Devuelto irreparable',
+			'Limpieza',
+			'Limpieza carcasa + display',
+			'COMENTARIO MODIFICADO',
+			'Revisión tensión batería',
+		],
+	},
+
+3. Guardar el archivo data.js
+4. Recargar index.html para ver los cambios
+
+-----Creación de comentarios
+
+1. Abrir el archivo data.js con un editor de texto (Bloc de notas, Notepad++, VSCode, Vim,...)
+2. Buscar el nombre de tipo de resolución (Desactivación, Sustitución,...) y situar el cursor detrás de la coma del último comentario
+3. Pulsar intro, luego barra espaciadora o tabulador para situarse a la altura del comentario anterior
+4. Crear el comentario nuevo entre comillas y terminar con una coma
+
+		{
+		Varios: [
+			'Actualización versión',
+			'Carga de claves',
+			'Devolución de terminal',
+			'Devuelto irreparable',
+			'Limpieza',
+			'Limpieza carcasa + display',
+			'Plataformado',
+			'Revisión tensión batería',
+			'COMENTARIO NUEVO',
+		],
+	},
+
+3. Guardar el archivo data.js en Archivo -> Guardar
+4. Recargar index.html para ver los cambios
