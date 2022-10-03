@@ -100,15 +100,15 @@ for (book of data) {
 	const bookContainer = document.createElement('div');
 	const bookTitle = document.createElement('h3');
 
-	bookContainer.setAttribute('id', book[0]);
+	bookContainer.setAttribute('id', Object.keys(book[1]));
 	bookContainer.setAttribute('class', 'book');
 
 	commentsContainer.appendChild(bookContainer);
 	bookContainer.appendChild(bookTitle);
 
-	bookTitle.innerText = book[0];
+	bookTitle.innerText = Object.keys(book[1]);
 
-	for (row of book[1]) {
+	for (row of Object.values(book[1])) {
 		row = Object.entries(row);
 		for (comment of row) {
 			const commentButton = document.createElement('p');
