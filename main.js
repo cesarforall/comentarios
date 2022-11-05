@@ -90,6 +90,7 @@ function copiarAlPortapapeles(id_elemento) {
 	aux.select();
 	document.execCommand('copy');
 	document.body.removeChild(aux);
+	appearCMA();
 }
 
 wholeCommentContainer.addEventListener('click', event => {
@@ -121,4 +122,26 @@ for (book of data) {
 	}
 }
 
-// Creado por César Almeida - https://github.com/cesarforall/comentarios
+// Copied message alert
+function appearCMA() {
+	copiedMessageAlert.classList.remove('is-hidden');
+	setTimeout(dissapearCMA, 1000);
+}
+function dissapearCMA() {
+	copiedMessageAlert.classList.add('is-hidden');
+}
+
+const copiedMessageAlert = document.getElementById('copied-message-alert');
+
+// Credits
+function appearCredits() {
+	creditsElement.classList.remove('hidden');
+	setTimeout(dissapearCredits, 500);
+}
+function dissapearCredits() {
+	creditsElement.classList.add('hidden');
+}
+
+const creditsElement = document.getElementById('credits');
+const showCredits = document.getElementById('show-credits');
+showCredits.addEventListener('click', appearCredits);

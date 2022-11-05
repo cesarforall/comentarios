@@ -4,22 +4,39 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Comentarios</title>
-		<link rel="stylesheet" href="styles.css" />
+		<title>Herramientas LAB | Comentarios</title>
+		<link rel="stylesheet" href="./normalize.css" />
+		<link rel="stylesheet" href="bulma.css" />
+		<link rel="stylesheet" href="./styles.css" />
 	</head>
 	<body>
-		<header>
-			<h1>Creador de comentarios</h1>
-			<p>
-				Haz click en las opciones para crear el comentario.
-				<br />
-				No copies, solo pincha en el comentario generado y pega donde quieras.
-			</p>
+		<header class="header">
+			<nav class="navbar is-transparent has-shadow" role="navigation" aria-label="main navigation">
+				<div class="container is-max-widescreen">
+					<div class="navbar-brand">
+						<a class="navbar-item" href="index.html"><strong>Herramientas LAB</strong></a>
+						<a class="navbar-item" href="index.html">|</a>
+						<a class="navbar-item is-tab is-active" href="index.html">Comentarios</a>
+						<a class="navbar-item" href="./versions.html">Versiones</a>
+					</div>
+				</div>
+			</nav>
 		</header>
-		<main>
-			<div id="comments-container" class="comments-container"></div>
-		</main>
+		<div class="separator"></div>
+		<div class="content instructions is-small">
+			<ol>
+				<li>Pincha en las opciones de trabajos realizados</li>
+				<li>Pincha en la ventana para copiar el comentario generado en el portapapeles</li>
+				<li>Pega el comentario con Ctrl + V o botón derecho del ratón</li>
+			</ol>
+		</div>
+		<div id="copied-message-alert" class="notification is-link is-light is-hidden">
+			<p>Comentario copiado en el portapapeles</p>
+		</div>
 		<section>
+			<div id="comments-container" class="comments-container"></div>
+		</section>
+		<section class="section">
 			<div id="whole-comment-container" class="whole-comment-container">
 				<div>
 					<div class="buttons-container">
@@ -32,11 +49,14 @@
 				<p id="whole-comment-text"></p>
 			</div>
 		</section>
-		<footer>
-			<p>Centro de Laboratorio</p>
-			<!-- <p>Creado por César Almeida - https://github.com/cesarforall/comentarios</p> -->
+		<footer class="footer">
+			<div class="content is-small has-text-centered">
+				<p><strong>Centro de Laboratorio</strong></p>
+				<p id="show-credits">@</p>
+				<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
+			</div>
 		</footer>
-		<script src="data.js"></script>
-		<script type="text/javascript" src="script.js"></script>
+		<script src="./data.js"></script>
+		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>
