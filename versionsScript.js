@@ -10,54 +10,196 @@ versionsElement.addEventListener('click', event => {
 		const theRoute = searchRoute(route);
 		console.log(theRoute);
 		copiarAlPortapapeles(theRoute);
-		appearCMA()
+		appearCMA();
 	}
 });
 
 const table = document.getElementById('table');
-const tbody = document.createElement('tbody');
-tbody.innerHTML = `
-<tr>
-	<td><strong>Cliente</strong></td>
-	<td><strong>Modelo</strong></td>
-	<td><strong>Versión</strong></td>
-	<td><strong>Fecha</strong></td>
-	<td><strong>Ruta</strong></td>
-</tr>
-	`;
+const tbody = document.getElementById('tbody');
 
-data.forEach(obj => {
-	const tr = document.createElement('tr');
-	tr.setAttribute('id', `${obj['Cliente']}-${obj['Modelo']}`);
+const clientsSelectItem = document.getElementById('clients-select');
+const modelsSelectItem = document.getElementById('models-select');
 
-	const tdClient = document.createElement('td');
-	tdClient.innerText = obj['Cliente'];
+let lastClient = 'client';
+console.log('lastClient', lastClient);
 
-	const tdModel = document.createElement('td');
-	tdModel.innerText = obj['Modelo'];
+clientsSelectItem.addEventListener('click', event => {
+	const clientValue = clientsSelectItem.value;
+	const clientText = clientsSelectItem.options[clientsSelectItem.selectedIndex].text;
 
-	const tdVersion = document.createElement('td');
-	tdVersion.innerText = obj['Versión'];
+	const modelValue = modelsSelectItem.value;
+	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
 
-	const tdDate = document.createElement('td');
-	tdDate.innerText = obj['Fecha'];
-
-	const tdRoute = document.createElement('td');
-	tdRoute.setAttribute('id', 'ruta');
-	tdRoute.innerText = 'Copiar ruta del directorio';
-
-	tr.appendChild(tdClient);
-	tr.appendChild(tdModel);
-	tr.appendChild(tdVersion);
-	tr.appendChild(tdDate);
-	tr.appendChild(tdRoute);
-
-	tbody.appendChild(tr);
+	if (clientValue != lastClient) {
+		if (clientValue != 'client') {
+			if (modelValue == 'model') {
+				const clientData = filterClient(clientText, data);
+				const fCModels = filterClientModels(clientText);
+				printModels(fCModels);
+				createTable(clientData);
+			} else {
+				const clientData = filterClient(clientText, data);
+				const fCModels = filterClientModels(clientText);
+				printModels(fCModels);
+				createTable(clientData);
+				console.log(clientData);
+			}
+			lastClient = clientValue;
+			console.log('lastClient', lastClient);
+		} else {
+			const clientData = filterClient(clientText, data);
+			const fCModels = filterClientModels(clientText);
+			// clientsModel = data.map(item => item.Modelo);
+			printModels(models);
+			createTable(data);
+		}
+	}
 });
 
-versionsElement.appendChild(table);
-table.appendChild(tbody);
+let lastModel = 'model';
+console.log('lastModel', lastModel);
 
+modelsSelectItem.addEventListener('click', e => {
+	const clientValue = clientsSelectItem.value;
+	const clientText = clientsSelectItem.options[clientsSelectItem.selectedIndex].text;
+
+	const modelValue = modelsSelectItem.value;
+	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
+
+	if (modelValue != lastModel) {
+		if (modelValue != 'model') {
+			if (clientValue == 'client') {
+				clientsModel = data.filter(item => item.Modelo == modelText);
+				createTable(clientsModel);
+			} else {
+				clientsModel = data.filter(item => item.Cliente == clientText);
+				modelsClient = clientsModel.filter(item => item.Modelo == modelText);
+				// printModels(modelsClient)
+				createTable(modelsClient);
+			}
+			lastModel = modelValue;
+		}
+	}
+	console.log(lastModel);
+});
+
+// Get clients and models
+const clients = Array.from(new Set(data.map(item => item.Cliente)));
+const models = Array.from(new Set(data.map(item => item.Modelo)));
+
+// Clients and models
+clientOptions = [];
+
+function printClients(clientList) {
+	clientOptions = [];
+	clientList.forEach(client => {
+		const option = document.createElement('option');
+		option.value = client.toLowerCase();
+		option.innerText = client;
+		clientOptions.push(option);
+	});
+	clientsSelectItem == '';
+	clientOptions.forEach(item => clientsSelectItem.appendChild(item));
+}
+
+let modelOptions = [];
+
+function printModels(modelList) {
+	modelOptions = [];
+	modelList = modelList.sort();
+	modelList.forEach(model => {
+		// console.log(model);
+		const option = document.createElement('option');
+		option.value = model.toLowerCase();
+		option.innerText = model;
+		modelOptions.push(option);
+	});
+	const option = document.createElement('option');
+	option.value = 'model';
+	option.innerText = 'Modelo';
+	modelOptions.unshift(option);
+	modelsSelectItem.innerHTML = '';
+	modelOptions.forEach(item => modelsSelectItem.appendChild(item));
+}
+
+function filterClient(client, data) {
+	console.log(client);
+	console.log(data);
+	const filteredClient = data.filter(item => {
+		return item.Cliente == client;
+	});
+	// console.log(filteredClient);
+	return filteredClient;
+}
+
+function filterClientModels(client) {
+	filteredClient = data.filter(item => item.Cliente == client);
+	filteredModels = filteredClient.map(item => item.Modelo);
+	return filteredModels;
+}
+
+// Sort data
+function sortData(data, filter) {
+	const orderedData = data.sort((a, b) => {
+		const clientA = a[filter].toUpperCase();
+		const clientB = b[filter].toUpperCase();
+		if (clientA < clientB) {
+			return -1;
+		}
+		if (clientA > clientB) {
+			return 1;
+		}
+		return 0;
+	});
+	return orderedData;
+}
+
+// Create and print table
+let newTable = [];
+
+function createTable(data) {
+	newTable = [];
+	data.forEach(obj => {
+		const tr = document.createElement('tr');
+		tr.setAttribute('id', `${obj['Cliente']}-${obj['Modelo']}`);
+
+		const tdClient = document.createElement('td');
+		tdClient.innerText = obj['Cliente'];
+
+		const tdModel = document.createElement('td');
+		tdModel.innerText = obj['Modelo'];
+
+		const tdVersion = document.createElement('td');
+		tdVersion.innerText = obj['Versión'];
+
+		const tdDate = document.createElement('td');
+		tdDate.innerText = obj['Fecha'];
+
+		const tdRoute = document.createElement('td');
+		tdRoute.setAttribute('id', 'ruta');
+		tdRoute.innerText = 'Copiar ruta del directorio';
+
+		tr.appendChild(tdClient);
+		tr.appendChild(tdModel);
+		tr.appendChild(tdVersion);
+		tr.appendChild(tdDate);
+		tr.appendChild(tdRoute);
+
+		// tbody.appendChild(tr);
+		newTable.push(tr);
+	});
+
+	printTable();
+}
+
+function printTable() {
+	tbody.innerText = '';
+	newTable.forEach(item => {
+		tbody.appendChild(item);
+	});
+}
+
+// Search route
 function searchRoute(clientModel) {
 	const searchingParams = clientModel.split('-');
 	const findedItem = data.filter(obj => {
@@ -67,6 +209,7 @@ function searchRoute(clientModel) {
 	return findedItem[0].Ruta;
 }
 
+// Copy to clipboard
 function copiarAlPortapapeles(ruta) {
 	var aux = document.createElement('input');
 	aux.setAttribute('value', ruta);
@@ -76,6 +219,9 @@ function copiarAlPortapapeles(ruta) {
 	document.body.removeChild(aux);
 }
 
+// Self-disappearing message
+const copiedMessageAlert = document.getElementById('copied-message-alert');
+
 function appearCMA() {
 	copiedMessageAlert.classList.remove('is-hidden');
 	setTimeout(dissapearCMA, 1000);
@@ -84,8 +230,7 @@ function dissapearCMA() {
 	copiedMessageAlert.classList.add('is-hidden');
 }
 
-const copiedMessageAlert = document.getElementById('copied-message-alert');
-
+// Credits
 function appearCredits() {
 	creditsElement.classList.remove('hidden');
 	setTimeout(dissapearCredits, 500);
@@ -97,3 +242,10 @@ function dissapearCredits() {
 const creditsElement = document.getElementById('credits');
 const showCredits = document.getElementById('show-credits');
 showCredits.addEventListener('click', appearCredits);
+
+sortedClients = clients.sort();
+sortedModels = models.sort();
+printClients(sortedClients);
+printModels(models);
+const orderedData = sortData(data, 'Cliente');
+createTable(orderedData);

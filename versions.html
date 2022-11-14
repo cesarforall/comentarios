@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Herramientas LAB | Versiones</title>
+		<title>Herramientas LAB | Versiones PAX</title>
 		<link rel="stylesheet" href="normalize.css" />
 		<link rel="stylesheet" href="bulma.css" />
 		<link rel="stylesheet" href="versions.css" />
@@ -17,25 +17,53 @@
 						<a class="navbar-item" href="index.html"><strong>Herramientas LAB</strong></a>
 						<a class="navbar-item" href="index.html">|</a>
 						<a class="navbar-item" href="index.html">Comentarios</a>
-						<a class="navbar-item is-tab is-active" href="./versions.html">Versiones</a>
+						<a class="navbar-item is-tab is-active" href="./versions.html">Versiones PAX</a>
 					</div>
 				</div>
 			</nav>
 		</header>
 		<div class="separator"></div>
 		<section class="section">
-			<div class="content instructions is-small">
-				<ol>
-					<li>Pincha en un enlace de cliente modelo para copiar la ruta en el portapapeles</li>
-					<li>Pega la ruta en la barra de direcciones del <strong>navegador</strong> o el <strong>explorador de archivos</strong></li>
-				</ol>
-			</div>
 			<div id="copied-message-alert" class="notification is-link is-light is-hidden">
 				<p>Ruta copiada en el portapapeles</p>
 			</div>
 			<div class="container content is-small" id="versions">
+				<div class="content instructions is-small">
+					<ol>
+						<li>Pincha en un enlace de cliente modelo para copiar la ruta en el portapapeles</li>
+						<li>
+							Pega la ruta en la barra de direcciones del
+							<strong>navegador</strong>
+							o el
+							<strong>explorador de archivos</strong>
+						</li>
+					</ol>
+				</div>
 				<div class="table-container">
-					<table id="table" class="table is-hoverable"></table>
+					<table id="table" class="table is-hoverable">
+						<thead>
+							<tr>
+								<th>
+									<div class="select">
+										<select id="clients-select">
+											<option value="client">Cliente</option>
+										</select>
+									</div>
+								</th>
+								<th>
+									<div class="select">
+										<select id="models-select">
+											<option value="model">Modelo</option>
+										</select>
+									</div>
+								</th>
+								<th>Versión</th>
+								<th>Fecha</th>
+								<th>Ruta</th>
+							</tr>
+						</thead>
+						<tbody id="tbody"></tbody>
+					</table>
 				</div>
 			</div>
 		</section>
