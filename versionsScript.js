@@ -8,7 +8,6 @@ versionsElement.addEventListener('click', event => {
 	if (node.getAttribute('id') === 'ruta') {
 		const route = event.target.parentNode.getAttribute('id');
 		const theRoute = searchRoute(route);
-		console.log(theRoute);
 		copiarAlPortapapeles(theRoute);
 		appearCMA();
 	}
@@ -21,7 +20,6 @@ const clientsSelectItem = document.getElementById('clients-select');
 const modelsSelectItem = document.getElementById('models-select');
 
 let lastClient = 'client';
-console.log('lastClient', lastClient);
 
 clientsSelectItem.addEventListener('click', event => {
 	const clientValue = clientsSelectItem.value;
@@ -42,10 +40,8 @@ clientsSelectItem.addEventListener('click', event => {
 				const fCModels = filterClientModels(clientText);
 				printModels(fCModels);
 				createTable(clientData);
-				console.log(clientData);
 			}
 			lastClient = clientValue;
-			console.log('lastClient', lastClient);
 		} else {
 			const clientData = filterClient(clientText, data);
 			const fCModels = filterClientModels(clientText);
@@ -57,7 +53,6 @@ clientsSelectItem.addEventListener('click', event => {
 });
 
 let lastModel = 'model';
-console.log('lastModel', lastModel);
 
 modelsSelectItem.addEventListener('click', e => {
 	const clientValue = clientsSelectItem.value;
@@ -80,7 +75,6 @@ modelsSelectItem.addEventListener('click', e => {
 			lastModel = modelValue;
 		}
 	}
-	console.log(lastModel);
 });
 
 // Get clients and models
@@ -108,7 +102,6 @@ function printModels(modelList) {
 	modelOptions = [];
 	modelList = modelList.sort();
 	modelList.forEach(model => {
-		// console.log(model);
 		const option = document.createElement('option');
 		option.value = model.toLowerCase();
 		option.innerText = model;
@@ -123,12 +116,9 @@ function printModels(modelList) {
 }
 
 function filterClient(client, data) {
-	console.log(client);
-	console.log(data);
 	const filteredClient = data.filter(item => {
 		return item.Cliente == client;
 	});
-	// console.log(filteredClient);
 	return filteredClient;
 }
 
@@ -205,7 +195,6 @@ function searchRoute(clientModel) {
 	const findedItem = data.filter(obj => {
 		return obj.Cliente === searchingParams[0] && obj.Modelo === searchingParams[1];
 	});
-	console.log(findedItem[0].Ruta);
 	return findedItem[0].Ruta;
 }
 
