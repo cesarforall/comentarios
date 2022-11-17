@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<style>
+		.form-container {
+			width: 500px;
+			margin: 0 auto;
+		}
+		.is-zelenza {
+			background-image: linear-gradient(0deg, #c7057f 0%, #2a1f6d 100%);
+			color: white;
+		}
+	</style>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Herramientas LAB | 🖊️</title>
+		<link rel="stylesheet" href="normalize.css" />
+		<link rel="stylesheet" href="bulma.css" />
+		<link rel="stylesheet" href="versions.css" />
+	</head>
+	<body>
+		<header class="header">
+			<nav class="navbar is-transparent has-shadow" role="navigation" aria-label="main navigation">
+				<div class="container is-max-widescreen">
+					<div class="navbar-brand">
+						<a class="navbar-item" href="index.html"><strong>Herramientas LAB</strong></a>
+						<a class="navbar-item" href="index.html">|</a>
+						<a class="navbar-item" href="index.html">Comentarios</a>
+						<a class="navbar-item" href="./versions.html">Versiones PAX</a>
+						<a class="navbar-item is-tab is-active" href="./sheet.html">🖊️</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div class="separator"></div>
+		<section id="main-section" class="section">
+			<div class="form-container">
+				<form class="box">
+					<div class="field">
+						<label class="label">Usuario</label>
+						<div class="control">
+							<input class="input" type="email" placeholder="Usuario" />
+						</div>
+					</div>
+					<div class="field">
+						<label class="label">Password</label>
+						<div class="control">
+							<input class="input" type="password" placeholder="********" />
+						</div>
+					</div>
+					<button class="button is-zelenza has-text-white">Entrar</button>
+				</form>
+			</div>
+		</section>
+		<script type="text/javascript" src="xlsx.mini.min.js"></script>
+		<script type="text/javascript" src="sheet.js"></script>
+		<div class="separator"></div>
+		<footer class="footer">
+			<div class="content is-small has-text-centered">
+				<p><strong>Centro de Laboratorio</strong></p>
+				<p id="show-credits">@</p>
+				<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
+			</div>
+		</footer>
+	</body>
+</html>
