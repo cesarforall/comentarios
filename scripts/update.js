@@ -104,12 +104,14 @@ const downloadToFile = (content, filename, contentType) => {
 btnSave.addEventListener('click', () => {
 	let data;
 	if (fileName == 'versiones') {
+		console.log(fileName);
 		data = 'const versions=' + newData;
+		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else if (fileName == 'comentarios') {
+		console.log(fileName);
 		data = 'const comments=' + newData;
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else {
-		alert('Archivo actualizado incorrecto');
-		downloadToFile(data, fileName + '.js', 'text/plain');
+		alert('Archivo Excel incorrecto');
 	}
 });

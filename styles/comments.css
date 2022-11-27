@@ -32,6 +32,9 @@ tr {
 	color: white;
 	width: 100px;
 }
+.book td{
+	vertical-align: middle;
+}
 .comment {
 	background-color: #4a4083c0;
 	font-size: 13px;

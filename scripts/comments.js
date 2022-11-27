@@ -10,7 +10,7 @@ const wholeCommentText = document.getElementById('whole-comment-text');
 const backspaceButton = document.querySelector('.backspace-btn');
 const copiedMessageAlert = document.getElementById('copied-message-alert');
 const creditsElement = document.getElementById('credits');
-const commentTitles = getTitlesFromArray(comentarios);
+const commentTitles = getTitlesFromArray(comments);
 
 // Variables
 let wholeComment = {};
@@ -102,4 +102,4 @@ wholeCommentText.addEventListener('click', event => {
 
 // Logic
 createThheadElements(commentTitles, thHeadCommentsTable);
-creatThbodyElements(comentarios, thBodyCommentsTable);
+creatThbodyElements(comments, thBodyCommentsTable);
