@@ -79,14 +79,3 @@ function showBulmaMessage(element) {
 function hideBulmaMessage(element) {
 	element.classList.add('is-hidden');
 }
-
-// Show and hide elements
-function showElement(element) {
-	element.classList.remove('hidden');
-	setTimeout(() => {
-		hideElement(element);
-	}, 500);
-}
-function hideElement(element) {
-	element.classList.add('hidden');
-}

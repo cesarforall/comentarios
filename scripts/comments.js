@@ -1,6 +1,5 @@
 // Data
-const data = Object.entries(comments);
-const comentariostest = Array.from(comentarios);
+const comentariostest = Array.from(comments);
 
 // Document elements
 const thHeadCommentsTable = document.getElementById('thhead-comments-table');
@@ -11,7 +10,6 @@ const wholeCommentText = document.getElementById('whole-comment-text');
 const backspaceButton = document.querySelector('.backspace-btn');
 const copiedMessageAlert = document.getElementById('copied-message-alert');
 const creditsElement = document.getElementById('credits');
-const showCredits = document.getElementById('show-credits');
 const commentTitles = getTitlesFromArray(comentarios);
 
 // Variables
@@ -100,10 +98,6 @@ backspaceButton.addEventListener('click', event => {
 
 wholeCommentText.addEventListener('click', event => {
 	copiarAlPortapapeles('whole-comment-text');
-});
-
-showCredits.addEventListener('click', () => {
-	showElement(credits);
 });
 
 // Logic

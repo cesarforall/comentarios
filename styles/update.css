@@ -1,0 +1,22 @@
+.main-section {
+	width: 1024px;
+	margin: 0 auto;
+}
+.form-container {
+	width: 500px;
+	margin: 0 auto;
+}
+.is-zelenza {
+	background-image: linear-gradient(0deg, #c7057f 0%, #2a1f6d 100%);
+	color: white;
+}
+#new-array {
+	padding: 15px;
+	/* cursor: pointer; */
+}
+input {
+	padding-top: 10px;
+}
+.btn-save {
+	margin-bottom: 5px;
+}

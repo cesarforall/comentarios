@@ -5,20 +5,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Herramientas LAB | Versiones PAX</title>
-		<link rel="stylesheet" href="normalize.css" />
-		<link rel="stylesheet" href="bulma.css" />
-		<link rel="stylesheet" href="versions.css" />
+		<link rel="stylesheet" href="../styles/normalize.css" />
+		<link rel="stylesheet" href="../styles/bulma.css" />
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/versions.css" />
 	</head>
 	<body>
 		<header class="header">
 			<nav class="navbar is-transparent has-shadow" role="navigation" aria-label="main navigation">
 				<div class="container is-max-widescreen">
 					<div class="navbar-brand">
-						<a class="navbar-item" href="index.html"><strong>Herramientas LAB</strong></a>
-						<a class="navbar-item" href="index.html">|</a>
-						<a class="navbar-item" href="index.html">Comentarios</a>
+						<a class="navbar-item" href="../index.html"><strong>Herramientas LAB</strong></a>
+						<a class="navbar-item" href="../index.html">|</a>
+						<a class="navbar-item" href="../index.html">Comentarios</a>
 						<a class="navbar-item is-tab is-active" href="./versions.html">Versiones PAX</a>
 					</div>
+					<a class="navbar-item update-is-right" href="./update.html">🖊️</a>
 				</div>
 			</nav>
 		</header>
@@ -65,7 +67,6 @@
 						<tbody id="tbody"></tbody>
 					</table>
 				</div>
-				<a class="button is-rounded is-pulled-right" href="sheet.html">🖊️</a>
 			</div>
 		</section>
 		<div class="separator"></div>
@@ -76,7 +77,9 @@
 				<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
 			</div>
 		</footer>
-		<script type="text/javascript" src="versionsData.js"></script>
-		<script type="text/javascript" src="versionsScript.js"></script>
+		<script type="text/javascript" src="../data/versiones.js"></script>
+		<script src="../utils/utils.js"></script>
+		<script type="text/javascript" src="../scripts/versions.js"></script>
+		<script type="text/javascript" src="../index.js"></script>
 	</body>
 </html>

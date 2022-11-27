@@ -229,8 +229,6 @@ function dissapearCredits() {
 }
 
 const creditsElement = document.getElementById('credits');
-const showCredits = document.getElementById('show-credits');
-showCredits.addEventListener('click', appearCredits);
 
 sortedClients = clients.sort();
 sortedModels = models.sort();

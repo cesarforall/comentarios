@@ -13,23 +13,35 @@ newArray.id = 'new-array';
 const btnSave = document.createElement('button');
 btnSave.id = 'btn-save';
 btnSave.classList.add('button');
+btnSave.classList.add('btn-save');
+
 btnSave.innerText = 'Actualizar datos';
 
-let newVersions;
+const separator = document.createElement('div');
+separator.classList.add('separator');
 
+let newData;
+let fileName = '';
 async function handleFileAsync(e) {
 	/* get first file */
 	const file = e.target.files[0];
+	const fullName = e.target.files[0].name;
+	const dotIndex = fullName.indexOf('.');
+	fileName = fullName.slice(0, dotIndex);
+	console.log(fileName);
+
 	/* get raw data */
 	const data = await file.arrayBuffer();
 	/* data is an ArrayBuffer */
 	const wb = XLSX.read(data);
 	/* do something with the workbook here */
 	versions = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-	newVersions = converToJson(versions);
-	// console.log(newVersions);
-	newArray.innerHTML = newVersions;
+	newData = converToJson(versions);
+	// console.log(newData);
+	newArray.innerHTML = newData;
 	mainSection.appendChild(btnSave);
+	mainSection.appendChild(separator);
+	mainSection.appendChild(newArray);
 }
 inputFile.addEventListener('change', handleFileAsync, false);
 
@@ -49,15 +61,13 @@ function createExceltoJsonConverter() {
 	mainSection.innerHTML = `
 	<div class="content instructions is-small">
 	<ol>
-		<li>Seleccionar el archivo de Excel .xlsx actualizado</li>
-		<li>Pinchar en el botón 'Actualizar datos' situado después de los datos</li>
-		<li>Buscar la ruta del archivo de datos con la extensión .js</li>
-		<li>Pinchar en el archivo para actualizar el nombre, luego guardar y reemplazar</li>
+		<li>Selecciona el archivo excel actualizado</li>
+		<li>Haz click en Actualizar datos</li>
+		<li>Sobrescribe el archivo con el mismo nombre y extensión .js</li>
 	</ol>
 </div>
 	`;
 	mainSection.appendChild(inputFile);
-	mainSection.appendChild(newArray);
 }
 
 // Converto to Json
@@ -75,10 +85,11 @@ function copiarAlPortapapeles(ruta) {
 	document.body.removeChild(aux);
 }
 
-newArray.addEventListener('click', e => copiarAlPortapapeles(newVersions));
+newArray.addEventListener('click', e => copiarAlPortapapeles(newData));
 
 // Download the file
 
+// const constOptions = { 1: 'comments', 2: 'versions' };
 const downloadToFile = (content, filename, contentType) => {
 	const a = document.createElement('a');
 	const file = new Blob([content], { type: contentType });
@@ -91,19 +102,14 @@ const downloadToFile = (content, filename, contentType) => {
 };
 
 btnSave.addEventListener('click', () => {
-	let data = 'const versions=' + newVersions;
-	downloadToFile(data, 'datas.js', 'text/plain');
+	let data;
+	if (fileName == 'versiones') {
+		data = 'const versions=' + newData;
+	} else if (fileName == 'comentarios') {
+		data = 'const comments=' + newData;
+		downloadToFile(data, fileName + '.js', 'text/plain');
+	} else {
+		alert('Archivo actualizado incorrecto');
+		downloadToFile(data, fileName + '.js', 'text/plain');
+	}
 });
-
-// Credits
-function appearCredits() {
-	creditsElement.classList.remove('hidden');
-	setTimeout(dissapearCredits, 500);
-}
-function dissapearCredits() {
-	creditsElement.classList.add('hidden');
-}
-
-const creditsElement = document.getElementById('credits');
-const showCredits = document.getElementById('show-credits');
-showCredits.addEventListener('click', appearCredits);

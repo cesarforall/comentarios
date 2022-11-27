@@ -1,0 +1,22 @@
+/* Root */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+.update-is-right {
+	margin-top: 5px;
+	margin-left: 50%;
+}
+
+/* Utils */
+.separator {
+	height: 6px;
+	background-image: linear-gradient(0deg, #c7057f 0%, #2a1f6d 100%);
+}
+
+.hidden {
+	color: transparent;
+}

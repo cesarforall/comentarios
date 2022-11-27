@@ -1,42 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-	<style>
-		.main-section {
-			width: 1024px;
-			margin: 0 auto;
-		}
-		.form-container {
-			width: 500px;
-			margin: 0 auto;
-		}
-		.is-zelenza {
-			background-image: linear-gradient(0deg, #c7057f 0%, #2a1f6d 100%);
-			color: white;
-		}
-		#new-array {
-			padding: 15px;
-			/* cursor: pointer; */
-		}
-	</style>
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Herramientas LAB | 🖊️</title>
-		<link rel="stylesheet" href="normalize.css" />
-		<link rel="stylesheet" href="bulma.css" />
-		<link rel="stylesheet" href="versions.css" />
+		<link rel="stylesheet" href="../styles/normalize.css" />
+		<link rel="stylesheet" href="../styles/bulma.css" />
+		<link rel="stylesheet" href="../styles/styles.css" />
+		<link rel="stylesheet" href="../styles/update.css" />
 	</head>
 	<body>
 		<header class="header">
 			<nav class="navbar is-transparent has-shadow" role="navigation" aria-label="main navigation">
 				<div class="container is-max-widescreen">
 					<div class="navbar-brand">
-						<a class="navbar-item" href="index.html"><strong>Herramientas LAB</strong></a>
-						<a class="navbar-item" href="index.html">|</a>
-						<a class="navbar-item" href="index.html">Comentarios</a>
+						<a class="navbar-item" href="../index.html"><strong>Herramientas LAB</strong></a>
+						<a class="navbar-item" href="../index.html">|</a>
+						<a class="navbar-item" href="../index.html">Comentarios</a>
 						<a class="navbar-item" href="./versions.html">Versiones PAX</a>
-						<a class="navbar-item is-tab is-active" href="./sheet.html">🖊️</a>
+						<a class="navbar-item is-tab is-active" href="./update.html">🖊️</a>
 					</div>
 				</div>
 			</nav>
@@ -69,7 +52,8 @@
 				<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
 			</div>
 		</footer>
-		<script type="text/javascript" src="xlsx.mini.min.js"></script>
-		<script type="text/javascript" src="sheet.js"></script>
+		<script type="text/javascript" src="../utils/xlsx.mini.min.js"></script>
+		<script type="text/javascript" src="../scripts/update.js"></script>
+		<script type="text/javascript" src="../index.js"></script>
 	</body>
 </html>

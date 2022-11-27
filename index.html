@@ -5,9 +5,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Herramientas LAB | Comentarios</title>
-		<link rel="stylesheet" href="./normalize.css" />
-		<link rel="stylesheet" href="bulma.css" />
-		<link rel="stylesheet" href="./styles.css" />
+		<link rel="stylesheet" href="./styles/normalize.css" />
+		<link rel="stylesheet" href="./styles/bulma.css" />
+		<link rel="stylesheet" href="./styles/styles.css" />
+		<link rel="stylesheet" href="./styles/comments.css" />
 	</head>
 	<body>
 		<header class="header">
@@ -17,15 +18,16 @@
 						<a class="navbar-item" href="index.html"><strong>Herramientas LAB</strong></a>
 						<a class="navbar-item" href="index.html">|</a>
 						<a class="navbar-item is-tab is-active" href="index.html">Comentarios</a>
-						<a class="navbar-item" href="./versions.html">Versiones PAX</a>
+						<a class="navbar-item" href="./pages/versions.html">Versiones PAX</a>
 					</div>
+					<a class="navbar-item update-is-right" href="./pages/update.html">🖊️</a>
 				</div>
 			</nav>
 		</header>
 		<div class="separator"></div>
 		<div class="content instructions is-small">
 			<ol>
-				<li>Pincha en las opciones de trabajos realizados</li>
+				<li>Selecciona las opciones de trabajos realizados</li>
 				<li>Pincha en la ventana para copiar el comentario generado en el portapapeles</li>
 				<li>Pega el comentario con Ctrl + V o botón derecho del ratón</li>
 			</ol>
@@ -60,9 +62,9 @@
 				<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
 			</div>
 		</footer>
-		<script src="./data.js"></script>
 		<script src="./data/comentarios.js"></script>
-		<script src="./src/utils/utils.js"></script>
-		<script type="text/javascript" src="main.js"></script>
+		<script src="./utils/utils.js"></script>
+		<script src="./scripts/comments.js"></script>
+		<script type="text/javascript" src="index.js"></script>
 	</body>
 </html>
