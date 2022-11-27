@@ -102,10 +102,12 @@ function printModels(modelList) {
 	modelOptions = [];
 	modelList = modelList.sort();
 	modelList.forEach(model => {
-		const option = document.createElement('option');
-		option.value = model.toLowerCase();
-		option.innerText = model;
-		modelOptions.push(option);
+		if (model) {
+			const option = document.createElement('option');
+			option.value = model.toLowerCase();
+			option.innerText = model;
+			modelOptions.push(option);
+		}
 	});
 	const option = document.createElement('option');
 	option.value = 'model';
@@ -154,16 +156,16 @@ function createTable(data) {
 		tr.setAttribute('id', `${obj['Cliente']}-${obj['Modelo']}`);
 
 		const tdClient = document.createElement('td');
-		tdClient.innerText = obj['Cliente'];
+		tdClient.innerText = obj['Cliente'] || 'sin datos';
 
 		const tdModel = document.createElement('td');
-		tdModel.innerText = obj['Modelo'];
+		tdModel.innerText = obj['Modelo'] || 'sin datos';
 
 		const tdVersion = document.createElement('td');
-		tdVersion.innerText = obj['Versión'];
+		tdVersion.innerText = obj['Versión'] || 'sin datos';
 
 		const tdDate = document.createElement('td');
-		tdDate.innerText = obj['Fecha'];
+		tdDate.innerText = obj['Fecha'] || 'sin datos';
 
 		const tdRoute = document.createElement('td');
 		tdRoute.setAttribute('id', 'ruta');
