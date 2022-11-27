@@ -1,14 +1,64 @@
+// Data
 const data = Object.entries(comments);
+const comentariostest = Array.from(comentarios);
+
+// Document elements
+const thHeadCommentsTable = document.getElementById('thhead-comments-table');
+const thBodyCommentsTable = document.getElementById('thbody-comments-table');
 const commentsContainer = document.getElementById('comments-container');
 const wholeCommentContainer = document.getElementById('whole-comment-container');
 const wholeCommentText = document.getElementById('whole-comment-text');
 const backspaceButton = document.querySelector('.backspace-btn');
+const copiedMessageAlert = document.getElementById('copied-message-alert');
+const creditsElement = document.getElementById('credits');
+const showCredits = document.getElementById('show-credits');
+const commentTitles = getTitlesFromArray(comentarios);
 
+// Variables
 let wholeComment = {};
 let wholeCommentArray = [];
 let booksArray = [];
 let lastKey = [];
 let lastValue = [];
+
+// Event listeners
+thBodyCommentsTable.addEventListener('click', e => {
+	const target = e.target.nodeName;
+	const title = e.target.id;
+	const comment = e.target.innerText;
+	const lastTitle = lastKey[lastKey.length - 1];
+	const lastComment = lastValue[lastValue.length - 1];
+
+	if (target == 'TD' && comment) {
+		lastKey.push(title);
+		lastValue.push(comment);
+
+		if (!wholeComment[title]) {
+			wholeComment[title] = [];
+
+			wholeComment[title].push(comment);
+		} else {
+			wholeComment[title].push(comment);
+		}
+
+		wholeCommentArray = Object.entries(wholeComment);
+
+		let wholeCommentStrings = [];
+		for (let i = 0; i < wholeCommentArray.length; i++) {
+			if (wholeCommentArray[i][0] == 'Desactivación') {
+				const wholeCommentString = wholeCommentArray[i][0] + ' ' + wholeCommentArray[i][1].join(', ');
+				wholeCommentStrings.push(wholeCommentString);
+			} else if (wholeCommentArray[i][0] == 'Varios') {
+				const wholeCommentString = wholeCommentArray[i][1].join(', ');
+				wholeCommentStrings.push(wholeCommentString);
+			} else {
+				const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
+				wholeCommentStrings.push(wholeCommentString);
+			}
+		}
+		wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
+	}
+});
 
 backspaceButton.addEventListener('click', event => {
 	lastItemKeyIndex = lastKey.length - 1;
@@ -48,100 +98,14 @@ backspaceButton.addEventListener('click', event => {
 	wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
 });
 
-commentsContainer.addEventListener('click', event => {
-	if (event.target.nodeName === 'P') {
-		const bookId = event.target.parentNode.getAttribute('id');
-		const commentText = event.target.innerText;
-
-		lastKey.push(bookId);
-		lastValue.push(commentText);
-
-		if (!wholeComment[bookId]) {
-			wholeComment[bookId] = [];
-
-			wholeComment[bookId].push(commentText);
-		} else {
-			wholeComment[bookId].push(commentText);
-		}
-
-		wholeCommentArray = Object.entries(wholeComment);
-
-		let wholeCommentStrings = [];
-		for (let i = 0; i < wholeCommentArray.length; i++) {
-			if (wholeCommentArray[i][0] == 'Desactivación') {
-				const wholeCommentString = wholeCommentArray[i][0] + ' ' + wholeCommentArray[i][1].join(', ');
-				wholeCommentStrings.push(wholeCommentString);
-			} else if (wholeCommentArray[i][0] == 'Varios') {
-				const wholeCommentString = wholeCommentArray[i][1].join(', ');
-				wholeCommentStrings.push(wholeCommentString);
-			} else {
-				const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
-				wholeCommentStrings.push(wholeCommentString);
-			}
-		}
-		wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
-	}
-});
-
-function copiarAlPortapapeles(id_elemento) {
-	var aux = document.createElement('input');
-	aux.setAttribute('value', document.getElementById(id_elemento).innerHTML);
-	document.body.appendChild(aux);
-	aux.select();
-	document.execCommand('copy');
-	document.body.removeChild(aux);
-	appearCMA();
-}
-
-wholeCommentContainer.addEventListener('click', event => {
+wholeCommentText.addEventListener('click', event => {
 	copiarAlPortapapeles('whole-comment-text');
 });
 
-for (book of data) {
-	const bookContainer = document.createElement('div');
-	const bookTitle = document.createElement('h3');
+showCredits.addEventListener('click', () => {
+	showElement(credits);
+});
 
-	bookContainer.setAttribute('id', Object.keys(book[1]));
-	bookContainer.setAttribute('class', 'book');
-
-	commentsContainer.appendChild(bookContainer);
-	bookContainer.appendChild(bookTitle);
-
-	bookTitle.innerText = Object.keys(book[1]);
-
-	for (row of Object.values(book[1])) {
-		row = Object.entries(row);
-		for (comment of row) {
-			const commentButton = document.createElement('p');
-			commentButton.setAttribute('class', 'comment');
-
-			bookContainer.appendChild(commentButton);
-
-			commentButton.innerText = comment[1];
-		}
-	}
-}
-
-// Copied message alert
-function appearCMA() {
-	copiedMessageAlert.classList.remove('is-hidden');
-	setTimeout(dissapearCMA, 1000);
-}
-function dissapearCMA() {
-	copiedMessageAlert.classList.add('is-hidden');
-}
-
-const copiedMessageAlert = document.getElementById('copied-message-alert');
-
-// Credits
-function appearCredits() {
-	creditsElement.classList.remove('hidden');
-	setTimeout(dissapearCredits, 500);
-}
-function dissapearCredits() {
-	creditsElement.classList.add('hidden');
-}
-
-const creditsElement = document.getElementById('credits');
-const showCredits = document.getElementById('show-credits');
-showCredits.addEventListener('click', appearCredits);
+// Logic
+createThheadElements(commentTitles, thHeadCommentsTable);
+creatThbodyElements(comentarios, thBodyCommentsTable);

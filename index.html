@@ -33,9 +33,6 @@
 		<div id="copied-message-alert" class="notification is-link is-light is-hidden">
 			<p>Comentario copiado en el portapapeles</p>
 		</div>
-		<section>
-			<div id="comments-container" class="comments-container"></div>
-		</section>
 		<section class="section">
 			<div id="whole-comment-container" class="whole-comment-container">
 				<div>
@@ -49,6 +46,12 @@
 				<p id="whole-comment-text"></p>
 			</div>
 		</section>
+		<div>
+			<table>
+				<thead id="thhead-comments-table"></thead>
+				<tbody id="thbody-comments-table"></tbody>
+			</table>
+		</div>
 		<div class="separator"></div>
 		<footer class="footer">
 			<div class="content is-small has-text-centered">
@@ -58,6 +61,8 @@
 			</div>
 		</footer>
 		<script src="./data.js"></script>
+		<script src="./data/comentarios.js"></script>
+		<script src="./src/utils/utils.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>

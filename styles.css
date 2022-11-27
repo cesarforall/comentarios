@@ -31,18 +31,40 @@ header {
 	margin: 1px;
 	color: white;
 }
-.comment {
-	font-size: 14px;
+tr {
+	/* background-color: #ffffff29; */
 	padding: 7px;
 	margin: 1px;
-	width: 130px;
+	color: white;
+	width: 100px;
+}
+.comment {
+	background-color: #4a4083c0;
+	font-size: 13px;
+	padding: 5px;
+	/* margin: 1px; */
+	width: 155px;
 	cursor: pointer;
 	color: white;
-	background-color: #4a4083c0;
+}
+.title-comment {
+	background-color: #ffffff29;
+	/* font-size: 13px; */
+	padding: 5px;
+	/* margin: 1px; */
+	width: 155px;
+	cursor: pointer;
+	padding: 7px;
+	color: white;
 }
 section {
 	display: flex;
 	gap: 100px;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 1px 1px;
 }
 .whole-comment-container {
 	display: flex;
