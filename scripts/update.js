@@ -33,9 +33,9 @@ async function handleFileAsync(e) {
 	/* get raw data */
 	const data = await file.arrayBuffer();
 	/* data is an ArrayBuffer */
-	const wb = XLSX.read(data);
+	const wb = XLSX.read(data, { cellText: false, cellDates: true });
 	/* do something with the workbook here */
-	versions = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+	versions = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { raw: false, dateNF: 'dd"/"mm"/"yyyy' });
 	newData = converToJson(versions);
 	// console.log(newData);
 	newArray.innerHTML = newData;
