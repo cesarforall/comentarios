@@ -19,7 +19,8 @@ const tbody = document.getElementById('tbody');
 const clientsSelectItem = document.getElementById('clients-select');
 const modelsSelectItem = document.getElementById('models-select');
 
-let lastClient = 'client';
+let lastClient = 'Client';
+let lastModel = 'Model';
 
 clientsSelectItem.addEventListener('click', event => {
 	const clientValue = clientsSelectItem.value;
@@ -28,31 +29,37 @@ clientsSelectItem.addEventListener('click', event => {
 	const modelValue = modelsSelectItem.value;
 	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
 
-	if (clientValue != lastClient) {
-		if (clientValue != 'client') {
-			if (modelValue == 'model') {
-				const clientData = filterClient(clientText, data);
-				const fCModels = filterClientModels(clientText);
-				printModels(fCModels);
-				createTable(clientData);
-			} else {
-				const clientData = filterClient(clientText, data);
-				const fCModels = filterClientModels(clientText);
-				printModels(fCModels);
-				createTable(clientData);
-			}
-			lastClient = clientValue;
-		} else {
-			const clientData = filterClient(clientText, data);
-			const fCModels = filterClientModels(clientText);
-			// clientsModel = data.map(item => item.Modelo);
-			printModels(models);
-			createTable(data);
-		}
+	if (clientText == 'Cliente' && modelText == 'Modelo') {
+		console.log('hello cliente model');
+		printModels(models);
+		createTable(data);
+		lastClient = clientValue;
+		lastModel = modelValue;
+	}
+	if (clientText != 'Cliente' && modelText == 'Modelo') {
+		console.log('hello other model');
+		const clientData = filterClient(clientText, data);
+		const fCModels = filterClientModels(clientText);
+		printModels(fCModels);
+		createTable(clientData);
+		lastClient = clientValue;
+		lastModel = modelValue;
+	}
+	if (clientText != 'Cliente' && modelText != 'Modelo') {
+		const clientData = filterClient(clientText, data);
+		const fCModels = filterClientModels(clientText);
+		printModels(fCModels);
+		createTable(clientData);
+		lastClient = clientValue;
+		lastModel = modelValue;
+	}
+	if (clientText == 'Cliente' && modelText != 'Modelo') {
+		clientsModel = data.filter(item => item.Modelo == modelText);
+		createTable(clientsModel);
+		lastClient = clientValue;
+		lastModel = modelValue;
 	}
 });
-
-let lastModel = 'model';
 
 modelsSelectItem.addEventListener('click', e => {
 	const clientValue = clientsSelectItem.value;
@@ -61,19 +68,37 @@ modelsSelectItem.addEventListener('click', e => {
 	const modelValue = modelsSelectItem.value;
 	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
 
-	if (modelValue != lastModel) {
-		if (modelValue != 'model') {
-			if (clientValue == 'client') {
-				clientsModel = data.filter(item => item.Modelo == modelText);
-				createTable(clientsModel);
-			} else {
-				clientsModel = data.filter(item => item.Cliente == clientText);
-				modelsClient = clientsModel.filter(item => item.Modelo == modelText);
-				// printModels(modelsClient)
-				createTable(modelsClient);
-			}
-			lastModel = modelValue;
-		}
+	console.log(lastModel);
+	// lastModel = modelValue;
+
+	if (clientText == 'Cliente' && modelText == 'Modelo') {
+		console.log('hello cliente model');
+		printModels(models);
+		createTable(data);
+		lastClient = clientValue;
+		lastModel = modelValue;
+	}
+	if (clientText != 'Cliente' && modelText == 'Modelo') {
+		console.log('hello other model');
+		const clientData = filterClient(clientText, data);
+		const fCModels = filterClientModels(clientText);
+		printModels(fCModels);
+		createTable(clientData);
+		lastClient = clientValue;
+		lastModel = modelValue;
+	}
+	if (clientText != 'Cliente' && modelText != 'Modelo') {
+		clientsModel = data.filter(item => item.Cliente == clientText);
+		modelsClient = clientsModel.filter(item => item.Modelo == modelText);
+		createTable(modelsClient);
+		lastClient = clientValue;
+		lastModel = modelValue;
+	}
+	if (clientText == 'Cliente' && modelText != 'Modelo') {
+		clientsModel = data.filter(item => item.Modelo == modelText);
+		createTable(clientsModel);
+		lastClient = clientValue;
+		lastModel = modelValue;
 	}
 });
 
