@@ -30,14 +30,12 @@ clientsSelectItem.addEventListener('click', event => {
 	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
 
 	if (clientText == 'Cliente' && modelText == 'Modelo') {
-		console.log('hello cliente model');
 		printModels(models);
 		createTable(data);
 		lastClient = clientValue;
 		lastModel = modelValue;
 	}
 	if (clientText != 'Cliente' && modelText == 'Modelo') {
-		console.log('hello other model');
 		const clientData = filterClient(clientText, data);
 		const fCModels = filterClientModels(clientText);
 		printModels(fCModels);
@@ -68,18 +66,15 @@ modelsSelectItem.addEventListener('click', e => {
 	const modelValue = modelsSelectItem.value;
 	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
 
-	console.log(lastModel);
 	// lastModel = modelValue;
 
 	if (clientText == 'Cliente' && modelText == 'Modelo') {
-		console.log('hello cliente model');
 		printModels(models);
 		createTable(data);
 		lastClient = clientValue;
 		lastModel = modelValue;
 	}
 	if (clientText != 'Cliente' && modelText == 'Modelo') {
-		console.log('hello other model');
 		const clientData = filterClient(clientText, data);
 		const fCModels = filterClientModels(clientText);
 		printModels(fCModels);
@@ -143,14 +138,27 @@ function printModels(modelList) {
 }
 
 function filterClient(client, data) {
+	let shortClient = '';
+	if (client.length > 16) {
+		shortClient = client.slice(16);
+	} else {
+		shortClient = client;
+	}
+
 	const filteredClient = data.filter(item => {
-		return item.Cliente == client;
+		return item.Cliente.includes(shortClient);
 	});
 	return filteredClient;
 }
 
 function filterClientModels(client) {
-	filteredClient = data.filter(item => item.Cliente == client);
+	let shortClient = '';
+	if (client.length > 16) {
+		shortClient = client.slice(16);
+	} else {
+		shortClient = client;
+	}
+	filteredClient = data.filter(item => item.Cliente.includes(shortClient));
 	filteredModels = filteredClient.map(item => item.Modelo);
 	return filteredModels;
 }
