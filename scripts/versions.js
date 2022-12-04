@@ -84,7 +84,7 @@ modelsSelectItem.addEventListener('click', e => {
 		lastModel = modelValue;
 	}
 	if (clientText != 'Cliente' && modelText != 'Modelo') {
-		clientsModel = data.filter(item => item.Cliente == clientText);
+		clientsModel = filterClient(clientText, data);;
 		modelsClient = clientsModel.filter(item => item.Modelo == modelText);
 		createTable(modelsClient);
 		lastClient = clientValue;
