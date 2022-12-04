@@ -28,6 +28,7 @@ clientsSelectItem.addEventListener('click', event => {
 
 	const modelValue = modelsSelectItem.value;
 	const modelText = modelsSelectItem.options[modelsSelectItem.selectedIndex].text;
+	console.log(modelText);
 
 	if (clientText == 'Cliente' && modelText == 'Modelo') {
 		printModels(models);
@@ -52,8 +53,8 @@ clientsSelectItem.addEventListener('click', event => {
 		lastModel = modelValue;
 	}
 	if (clientText == 'Cliente' && modelText != 'Modelo') {
-		clientsModel = data.filter(item => item.Modelo == modelText);
-		createTable(clientsModel);
+		printModels(models);
+		createTable(data);
 		lastClient = clientValue;
 		lastModel = modelValue;
 	}
@@ -159,7 +160,8 @@ function filterClientModels(client) {
 		shortClient = client;
 	}
 	filteredClient = data.filter(item => item.Cliente.includes(shortClient));
-	filteredModels = filteredClient.map(item => item.Modelo);
+	filteredModels = Array.from(new Set(filteredClient.map(item => item.Modelo)));
+	console.log(filteredModels);
 	return filteredModels;
 }
 
