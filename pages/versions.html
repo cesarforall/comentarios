@@ -1,86 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Herramientas LAB | Versiones PAX</title>
-		<link rel="stylesheet" href="../styles/normalize.css" />
-		<link rel="stylesheet" href="../styles/bulma.css" />
-		<link rel="stylesheet" href="../styles/styles.css" />
-		<link rel="stylesheet" href="../styles/versions.css" />
-	</head>
-	<body>
-		<header class="header">
-			<nav class="navbar is-transparent has-shadow" role="navigation" aria-label="main navigation">
-				<div class="container is-max-widescreen">
-					<div class="navbar-brand">
-						<a class="navbar-item" href="../index.html"><strong>Herramientas LAB</strong></a>
-						<a class="navbar-item" href="../index.html">|</a>
-						<a class="navbar-item" href="../index.html">Comentarios</a>
-						<a class="navbar-item is-tab is-active" href="./versions.html">Versiones</a>
-					</div>
-					<a class="navbar-item update-is-right" href="./update.html">🖊️</a>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Herramientas LAB | Versiones PAX</title>
+	<link rel="stylesheet" href="../styles/normalize.css" />
+	<link rel="stylesheet" href="../styles/bulma.css" />
+	<link rel="stylesheet" href="../styles/styles.css" />
+	<link rel="stylesheet" href="../styles/versions.css" />
+</head>
+
+<body>
+	<header class="header">
+		<nav class="navbar is-transparent has-shadow" role="navigation" aria-label="main navigation">
+			<div class="container is-max-widescreen">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="../index.html"><strong>Herramientas LAB</strong></a>
+					<a class="navbar-item" href="../index.html">|</a>
+					<a class="navbar-item" href="../index.html">Comentarios</a>
+					<a class="navbar-item is-tab is-active" href="./versions.html">Versiones</a>
 				</div>
-			</nav>
-		</header>
-		<div class="separator"></div>
-		<section class="section">
-			<div id="copied-message-alert" class="notification is-link is-light is-hidden">
-				<p>Ruta copiada en el portapapeles</p>
+				<a class="navbar-item update-is-right" href="./update.html">🖊️</a>
 			</div>
-			<div class="container content is-small" id="versions">
-				<div class="content instructions is-small">
-					<ol>
-						<li>Filtra por cliente o modelo</li>
-						<li>Copia la ruta del directorio haciendo click en el enlace</li>
-						<li>
-							Pega la ruta en la barra de direcciones del
-							<strong>navegador</strong>
-							o el
-							<strong>explorador de archivos</strong>
-						</li>
-					</ol>
-				</div>
-				<div class="table-container">
-					<table id="table" class="table is-hoverable">
-						<thead>
-							<tr>
-								<th>
-									<div class="select">
-										<select id="clients-select">
-											<option value="client">Cliente</option>
-										</select>
-									</div>
-								</th>
-								<th>
-									<div class="select">
-										<select id="models-select">
-											<option value="model">Modelo</option>
-										</select>
-									</div>
-								</th>
-								<th>Versión</th>
-								<th>Fecha</th>
-								<th>Ruta</th>
-							</tr>
-						</thead>
-						<tbody id="tbody"></tbody>
-					</table>
-				</div>
+		</nav>
+	</header>
+	<div class="separator"></div>
+	<section class="section">
+		<div id="copied-message-alert" class="notification is-link is-light is-hidden">
+			<p>Ruta copiada en el portapapeles</p>
+		</div>
+		<div class="container content is-small" id="versions">
+			<div class="content instructions is-small">
+				<ol>
+					<li>Filtra por cliente o modelo</li>
+					<li>Copia la ruta del directorio haciendo click en el enlace</li>
+					<li>
+						Pega la ruta en la barra de direcciones del
+						<strong>navegador</strong>
+						o el
+						<strong>explorador de archivos</strong>
+					</li>
+				</ol>
 			</div>
-		</section>
-		<div class="separator"></div>
-		<footer class="footer">
-			<div class="content is-small has-text-centered">
-				<p><strong>Centro de Laboratorio</strong></p>
-				<p id="show-credits">@</p>
-				<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
+			<div class="table-container">
+				<table id="table" class="table is-hoverable">
+					<thead>
+						<tr>
+							<th>
+								<div class="select">
+									<select id="clients-select">
+										<option value="client">Cliente</option>
+									</select>
+								</div>
+							</th>
+							<th>
+								<div class="select">
+									<select id="models-select">
+										<option value="model">Modelo</option>
+									</select>
+								</div>
+							</th>
+							<th>Versión</th>
+							<th>Fecha</th>
+							<th>Ruta</th>
+						</tr>
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
 			</div>
-		</footer>
-		<script type="text/javascript" src="../data/versiones.js"></script>
-		<script src="../utils/utils.js"></script>
-		<script type="text/javascript" src="../scripts/versions.js"></script>
-		<script type="text/javascript" src="../index.js"></script>
-	</body>
+			<div id="last-updates" class="last-update">
+				<p id="last-versions" class="is-italic is-size-7 has-text-right"></p>
+				<p id="last-excel-versions" class="is-italic is-size-7 has-text-right"></p>
+			</div>
+		</div>
+	</section>
+	<div class="separator"></div>
+	<footer class="footer">
+		<div class="content is-small has-text-centered">
+			<p><strong>Centro de Laboratorio</strong></p>
+			<p id="show-credits">@</p>
+			<p id="credits" class="hidden">Creado por César Almeida - https://github.com/cesarforall</p>
+		</div>
+	</footer>
+	<script type="text/javascript" src="../data/versiones.js"></script>
+	<script src="../utils/utils.js"></script>
+	<script type="text/javascript" src="../scripts/versions.js"></script>
+	<script type="text/javascript" src="../index.js"></script>
+</body>
+
 </html>

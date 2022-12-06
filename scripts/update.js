@@ -22,8 +22,10 @@ separator.classList.add('separator');
 
 let newData;
 let fileName = '';
+let lastExcelDate;
 async function handleFileAsync(e) {
 	/* get first file */
+	lastExcelDate = formatDate(e.target.files[0].lastModifiedDate);
 	const file = e.target.files[0];
 	const fullName = e.target.files[0].name;
 	const dotIndex = fullName.indexOf('.');
@@ -102,16 +104,54 @@ const downloadToFile = (content, filename, contentType) => {
 };
 
 btnSave.addEventListener('click', () => {
+	let newDate = new Date();
+	// lastDate.toString()
+	// console.log(lastDate)
+	const lastDate = formatDate(newDate);
 	let data;
 	if (fileName == 'versiones') {
 		console.log(fileName);
-		data = 'const versions=' + newData;
+		data =
+			'const versions=' +
+			newData +
+			';const lastVersions=' +
+			"'" +
+			lastDate +
+			"'" +
+			';const lastExcelVersions=' +
+			"'" +
+			lastExcelDate +
+			"'";
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else if (fileName == 'comentarios') {
 		console.log(fileName);
 		data = 'const comments=' + newData;
+		console.log(data);
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else {
 		alert('Archivo Excel incorrecto');
 	}
 });
+
+Number.prototype.padLeft = function (base, chr) {
+	var len = String(base || 10).length - String(this).length + 1;
+	return len > 0 ? new Array(len).join(chr || '0') + this : this;
+};
+
+function formatDate(date) {
+	// let month = date.getMonth();
+	// if (month < 10) month = "0" + month;
+	// let dateOfMonth = date.getDate();
+	// if (dateOfMonth < 10) dateOfMonth = "0" + dateOfMonth;
+	// let year = date.getFullYear();
+	// const formattedDate = dateOfMonth + "/" + month + "/" + year;
+	// return formattedDate
+
+	let d = date,
+		dformat =
+			[d.getDate().padLeft(), (d.getMonth() + 1).padLeft(), d.getFullYear()].join('/') +
+			' ' +
+			[d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
+
+	return dformat;
+}

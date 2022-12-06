@@ -273,3 +273,10 @@ printClients(sortedClients);
 printModels(models);
 const orderedData = sortData(data, 'Cliente');
 createTable(orderedData);
+
+// Last versions
+const lastVersionsElement = document.getElementById('last-versions')
+const lastExcelVersionsElement = document.getElementById('last-excel-versions')
+
+lastVersionsElement.innerText = 'Última actualización de página: ' + lastVersions;
+lastExcelVersionsElement.innerText = 'Última actualización de datos: ' + lastExcelVersions;
