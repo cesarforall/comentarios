@@ -125,7 +125,17 @@ btnSave.addEventListener('click', () => {
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else if (fileName == 'comentarios') {
 		console.log(fileName);
-		data = 'const comments=' + newData;
+		data = data =
+			'const comments=' +
+			newData +
+			';const lastComments=' +
+			"'" +
+			lastDate +
+			"'" +
+			';const lastExcelComments=' +
+			"'" +
+			lastExcelDate +
+			"'";
 		console.log(data);
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else {

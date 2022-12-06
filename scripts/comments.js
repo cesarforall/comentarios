@@ -1,3 +1,11 @@
+const lastCommentsElement = document.getElementById('last-comments')
+const lastExcelCommentsElement = document.getElementById('last-excel-comments')
+
+// Show last update
+lastCommentsElement.innerText = 'Última actualización de página: ' + lastComments;
+lastExcelCommentsElement.innerText = 'Última actualización de datos: ' + lastExcelComments;
+
+
 // Data
 const comentariostest = Array.from(comments);
 
