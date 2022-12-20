@@ -1,4 +1,4 @@
-const data = Array.from(versions);
+let data = Array.from(versions);
 
 const versionsElement = document.getElementById('versions');
 
@@ -84,7 +84,7 @@ modelsSelectItem.addEventListener('click', e => {
 		lastModel = modelValue;
 	}
 	if (clientText != 'Cliente' && modelText != 'Modelo') {
-		clientsModel = filterClient(clientText, data);;
+		clientsModel = filterClient(clientText, data);
 		modelsClient = clientsModel.filter(item => item.Modelo == modelText);
 		createTable(modelsClient);
 		lastClient = clientValue;
@@ -167,18 +167,42 @@ function filterClientModels(client) {
 
 // Sort data
 function sortData(data, filter) {
-	const orderedData = data.sort((a, b) => {
-		const clientA = a[filter].toUpperCase();
-		const clientB = b[filter].toUpperCase();
-		if (clientA < clientB) {
-			return -1;
-		}
-		if (clientA > clientB) {
-			return 1;
-		}
-		return 0;
-	});
+	let orderedData;
+	if (filter === 'Fecha') {
+		orderedData = sortByDate(data);
+	} else {
+		orderedData = data.sort((a, b) => {
+			const clientA = a[filter].toUpperCase();
+			const clientB = b[filter].toUpperCase();
+			if (clientA < clientB) {
+				return -1;
+			}
+			if (clientA > clientB) {
+				return 1;
+			}
+			return 0;
+		});
+	}
 	return orderedData;
+}
+
+function sortByDate(data) {
+	const noUndefined = data.map(item => {
+		const Fecha = item.Fecha;
+		return { ...item, Fecha: Fecha === undefined ? '00/00/00' : Fecha };
+	});
+
+	const reversed = noUndefined.sort(function (a, b) {
+		a = a.Fecha.split('/').reverse().join('');
+		b = b.Fecha.split('/').reverse().join('');
+		return a > b ? -1 : a < b ? 1 : 0;
+	});
+
+	const sortedByDate = reversed.map(item => {
+		const Fecha = item.Fecha;
+		return { ...item, Fecha: Fecha === '00/00/00' ? 'sin datos' : Fecha };
+	});
+	return sortedByDate;
 }
 
 // Create and print table
@@ -186,6 +210,7 @@ let newTable = [];
 
 function createTable(data) {
 	newTable = [];
+	
 	data.forEach(obj => {
 		const tr = document.createElement('tr');
 		tr.setAttribute('id', `${obj['Cliente']}-${obj['Modelo']}`);
@@ -271,12 +296,12 @@ sortedClients = clients.sort();
 sortedModels = models.sort();
 printClients(sortedClients);
 printModels(models);
-const orderedData = sortData(data, 'Cliente');
-createTable(orderedData);
+data = sortData(data, 'Fecha');
+createTable(data);
 
 // Last versions
-const lastVersionsElement = document.getElementById('last-versions')
-const lastExcelVersionsElement = document.getElementById('last-excel-versions')
+const lastVersionsElement = document.getElementById('last-versions');
+const lastExcelVersionsElement = document.getElementById('last-excel-versions');
 
 lastVersionsElement.innerText = 'Última actualización de página: ' + lastVersions;
 lastExcelVersionsElement.innerText = 'Última actualización de datos: ' + lastExcelVersions;
