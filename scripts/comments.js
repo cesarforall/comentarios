@@ -8,6 +8,7 @@ lastExcelCommentsElement.innerText = 'Última actualización de datos: ' + lastE
 
 // Data
 const comentariostest = Array.from(comments);
+console.log(comentariostest);
 
 // Document elements
 const thHeadCommentsTable = document.getElementById('thhead-comments-table');
@@ -110,4 +111,4 @@ wholeCommentText.addEventListener('click', event => {
 
 // Logic
 createThheadElements(commentTitles, thHeadCommentsTable);
-creatThbodyElements(comments, thBodyCommentsTable);
+creatThbodyElements(commentTitles, comments, thBodyCommentsTable);

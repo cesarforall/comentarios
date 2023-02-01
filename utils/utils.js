@@ -17,44 +17,22 @@ function createThheadElements(titles, thhead) {
 	thhead.appendChild(tr);
 }
 
-function creatThbodyElements(data, thbody) {
+function creatThbodyElements(titles, data, thbodyElement) {
 	data.forEach(row => {
-		function fillTd(element, title) {
-			if (row[title]) {
-				element.id = title;
-				element.classList.add('comment');
-				element.innerText = row[title] || '';
-			}
-		}
 		const tr = document.createElement('tr');
 		tr.classList.add('book');
 
-		const tdDesactivación = document.createElement('td');
-		fillTd(tdDesactivación, 'Desactivación');
+		titles.forEach(title => {
+			const td = document.createElement('td');
+			td.id = title;
+			td.innerText = row[title] || '';
+			if (td.innerText != '') {
+				td.classList.add('comment');
+			}
+			tr.append(td);
+		});
 
-		const tdSustitución = document.createElement('td');
-		fillTd(tdSustitución, 'Sustitución');
-
-		const tdReajuste = document.createElement('td');
-		fillTd(tdReajuste, 'Reajuste');
-
-		const tdResoldadura = document.createElement('td');
-		fillTd(tdResoldadura, 'Resoldadura');
-
-		const tdScrap = document.createElement('td');
-		fillTd(tdScrap, 'Scrap');
-
-		const tdVarios = document.createElement('td');
-		fillTd(tdVarios, 'Varios');
-
-		tr.appendChild(tdDesactivación);
-		tr.appendChild(tdSustitución);
-		tr.appendChild(tdReajuste);
-		tr.appendChild(tdResoldadura);
-		tr.appendChild(tdScrap);
-		tr.appendChild(tdVarios);
-
-		thbody.appendChild(tr);
+		thbodyElement.appendChild(tr);
 	});
 }
 
