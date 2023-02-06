@@ -24,3 +24,9 @@
 	padding-top: 3rem;
 	color: white;
 }
+#zlab-logo span {
+	color: #c705aa;
+}
+.header a {
+	font-weight: bold;
+}
