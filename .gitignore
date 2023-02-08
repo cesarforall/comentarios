@@ -1,5 +1,3 @@
-.vscode/
-data/versiones.js
-data/versiones.xlsx
-data/comentarios.xlsx
+vscode/
+data/
 apps/spare-parts-app
