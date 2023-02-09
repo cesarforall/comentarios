@@ -1,10 +1,9 @@
-const lastCommentsElement = document.getElementById('last-comments')
-const lastExcelCommentsElement = document.getElementById('last-excel-comments')
+const lastCommentsElement = document.getElementById('last-comments');
+const lastExcelCommentsElement = document.getElementById('last-excel-comments');
 
 // Show last update
 lastCommentsElement.innerText = 'Última actualización de página: ' + lastComments;
 lastExcelCommentsElement.innerText = 'Última actualización de datos: ' + lastExcelComments;
-
 
 // Data
 const comentariostest = Array.from(comments);
@@ -51,19 +50,34 @@ thBodyCommentsTable.addEventListener('click', e => {
 		wholeCommentArray = Object.entries(wholeComment);
 
 		let wholeCommentStrings = [];
+		let wholeCommentStringsOther = [];
+		let newOrderedString = [];
 		for (let i = 0; i < wholeCommentArray.length; i++) {
 			if (wholeCommentArray[i][0] == 'Desactivación') {
 				const wholeCommentString = wholeCommentArray[i][0] + ' ' + wholeCommentArray[i][1].join(', ');
 				wholeCommentStrings.push(wholeCommentString);
 			} else if (wholeCommentArray[i][0] == 'Varios') {
 				const wholeCommentString = wholeCommentArray[i][1].join(', ');
-				wholeCommentStrings.push(wholeCommentString);
+				wholeCommentStringsOther.push(wholeCommentString);
+			} else if (wholeCommentArray[i][0] == 'Irreparable') {
+				const wholeCommentString = wholeCommentArray[i][1].join(', ');
+				wholeCommentStringsOther.push(wholeCommentString);
 			} else {
 				const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
 				wholeCommentStrings.push(wholeCommentString);
 			}
 		}
-		wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
+		const priorityOrder = ['Sustitución', 'Scrap', 'Resoldadura', 'Reajuste', 'Desactivación'];
+		priorityOrder.forEach(item => {
+			const newOrdered = wholeCommentStrings.filter(string => string.startsWith(item));
+			if (newOrdered != '') {
+				newOrderedString.push(newOrdered);
+				console.log(newOrderedString);
+			}
+		});
+		wholeCommentStringsOther.forEach(item => newOrderedString.push(item));
+
+		wholeCommentText.innerHTML = newOrderedString.join(', ');
 	}
 });
 
@@ -88,6 +102,8 @@ backspaceButton.addEventListener('click', event => {
 	wholeCommentArray = Object.entries(wholeComment);
 
 	let wholeCommentStrings = [];
+	let wholeCommentStringsOther = [];
+	let newOrderedString = [];
 	for (let i = 0; i < wholeCommentArray.length; i++) {
 		if (wholeCommentArray[i][0] == 'Desactivación') {
 			const wholeCommentString = wholeCommentArray[i][0] + ' ' + wholeCommentArray[i][1].join(', ');
@@ -95,14 +111,26 @@ backspaceButton.addEventListener('click', event => {
 			wholeCommentStrings.push(wholeCommentString);
 		} else if (wholeCommentArray[i][0] == 'Varios') {
 			const wholeCommentString = wholeCommentArray[i][1].join(', ');
-			console.log(wholeCommentString);
-			wholeCommentStrings.push(wholeCommentString);
+			wholeCommentStringsOther.push(wholeCommentString);
+		} else if (wholeCommentArray[i][0] == 'Irreparable') {
+			const wholeCommentString = wholeCommentArray[i][1].join(', ');
+			wholeCommentStringsOther.push(wholeCommentString);
 		} else {
 			const wholeCommentString = wholeCommentArray[i][0] + ' - ' + wholeCommentArray[i][1].join(', ');
 			wholeCommentStrings.push(wholeCommentString);
 		}
 	}
-	wholeCommentText.innerHTML = wholeCommentStrings.join(', ');
+	const priorityOrder = ['Sustitución', 'Scrap', 'Resoldadura', 'Reajuste', 'Desactivación'];
+	priorityOrder.forEach(item => {
+		const newOrdered = wholeCommentStrings.filter(string => string.startsWith(item));
+		if (newOrdered != '') {
+			newOrderedString.push(newOrdered);
+			console.log(newOrderedString);
+		}
+	});
+	wholeCommentStringsOther.forEach(item => newOrderedString.push(item));
+
+	wholeCommentText.innerHTML = newOrderedString.join(', ');
 });
 
 wholeCommentText.addEventListener('click', event => {
