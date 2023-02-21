@@ -49,7 +49,10 @@ inputFile.addEventListener('change', handleFileAsync, false);
 
 // Login
 
-loginButton.addEventListener('click', checkLogin);
+loginButton.addEventListener('click', e => {
+	e.preventDefault();
+	checkLogin();
+});
 // newArray.addEventListener('click', e => copiarAlPortapapeles(newArray.value));
 
 function checkLogin() {
@@ -111,31 +114,11 @@ btnSave.addEventListener('click', () => {
 	let data;
 	if (fileName == 'versiones') {
 		console.log(fileName);
-		data =
-			'const versions=' +
-			newData +
-			';const lastVersions=' +
-			"'" +
-			lastDate +
-			"'" +
-			';const lastExcelVersions=' +
-			"'" +
-			lastExcelDate +
-			"'";
+		data = 'const versions=' + newData + ';const lastVersions=' + "'" + lastDate + "'" + ';const lastExcelVersions=' + "'" + lastExcelDate + "'";
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else if (fileName == 'comentarios') {
 		console.log(fileName);
-		data = data =
-			'const comments=' +
-			newData +
-			';const lastComments=' +
-			"'" +
-			lastDate +
-			"'" +
-			';const lastExcelComments=' +
-			"'" +
-			lastExcelDate +
-			"'";
+		data = data = 'const comments=' + newData + ';const lastComments=' + "'" + lastDate + "'" + ';const lastExcelComments=' + "'" + lastExcelDate + "'";
 		console.log(data);
 		downloadToFile(data, fileName + '.js', 'text/plain');
 	} else {
@@ -158,10 +141,7 @@ function formatDate(date) {
 	// return formattedDate
 
 	let d = date,
-		dformat =
-			[d.getDate().padLeft(), (d.getMonth() + 1).padLeft(), d.getFullYear()].join('/') +
-			' ' +
-			[d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
+		dformat = [d.getDate().padLeft(), (d.getMonth() + 1).padLeft(), d.getFullYear()].join('/') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
 
 	return dformat;
 }
